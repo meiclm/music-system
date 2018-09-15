@@ -1,0 +1,53 @@
+#title{
+    background-color: rgba(151,171,251,0.15);
+}
+#title #spinner{
+    position: static;
+}
+#title #spinner div{
+    background-color: rgba(86,0,72,0.78);
+}
+#box{
+    margin-top: 2px;
+    border-top: rgba(151,171,251,0.65) 2px solid;
+}
+#box div#content{
+    position: relative;
+    /*border: blueviolet 1px solid;*/
+}
+#content #left-box{
+    margin-left: 10%;
+}
+#left-box img{
+    margin: 15px 0px 0px 0px;
+}
+#left-box p{
+    margin: 15px;
+}
+#right-box{
+    /*border: 1px red solid;*/
+    position: absolute;
+    top: 5px;
+    left: 27%;
+    width: 65%;
+}
+#right-box table{
+    width: 910px;
+}
+#right-box table thead tr th{
+    font-size: 17px;
+    text-align: center;
+    width: 1920px;
+}
+#right-box table tbody tr td{
+    padding: 0px;
+}
+#right-box table tbody tr td div{
+    text-overflow:ellipsis;
+    width: 192px;
+    height: 25px;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+    overflow:hidden;
+}

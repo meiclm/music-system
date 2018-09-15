@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.demo.mapper.LikeMapper">
+
+    <resultMap id="LikeResult" type="com.music.demo.entities.Like">
+        <result property="likeId" column="like_id"/>
+        <result property="songId" column="song_id"/>
+        <result property="usernameId" column="username_id"/>
+        <result property="songName" column="sname"/>
+        <result property="singerId" column="sid"/>
+        <result property="singerName" column="singerName"/>
+    </resultMap>
+
+    <select id="findByUsernameAndSongId" resultMap="LikeResult">
+        select * from like_song WHERE song_id=#{songId} AND username_id=#{currentUsername}
+    </select>
+    <select id="findBySongId" parameterType="Integer" resultMap="LikeResult">
+        select * from like_song WHERE song_id=#{songId}
+    </select>
+    
+    <insert id="insertLike" parameterType="com.music.demo.entities.Like">
+        insert into t_like(username_id,song_id) VALUES (#{usernameId},#{songId})
+    </insert>
+
+    <delete id="deleteLike" parameterType="Integer">
+        delete from t_like where like_id=#{likegId}
+    </delete>
+
+    <delete id="deleteByLike" parameterType="com.music.demo.entities.Like">
+        delete from t_like where like_id=#{likegId}
+    </delete>
+    <select id="findAllLikeByUsername" parameterType="String" resultMap="LikeResult">
+        select * from like_song WHERE username_id=#{username}
+    </select>
+</mapper>

@@ -1,0 +1,103 @@
+
+/*隐藏修改个人信息的按钮*/
+.fadeOutBtn{
+    display: none;
+}
+/*个人信息按钮*/
+#my-info-update{
+    margin: 10px 25px;
+    padding: 8px 15px;
+    background-color: rgba(45,163,130,0.77);
+    color: white;
+}
+#my-info-update:hover{
+    background-color: #0d8aee;
+}
+/*中间操作*/
+.color-bar div{
+    margin-left: 40%;
+}
+.color-bar div button{
+    display: inline;
+    margin-top: 35px;
+    width: 120px;
+    height: 40px;
+    color: white;
+    font-size: 17px;
+    border-radius: 5%;
+    background-color: rgba(45,163,130,0.77);
+}
+.color-bar div button:hover{
+    background-color: #0d8aee;
+}
+
+.mySong-list table tbody tr td+td,.mySong-list table thead tr td+td{
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+.mySong-list table tr td div{
+    width: 150px;
+    padding-top: 5px;
+    height: 25px;
+    overflow: hidden;
+}
+.mySong-list table thead tr{
+    border-bottom: silver 2px solid;
+}
+.mySong-list table tr td+td{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/*我喜欢列表*/
+span.like-current{
+    color: rgba(247,79,43,0.78);
+}
+
+like-song-list{
+    display: none;
+}
+ul#like-list{
+    margin: 0px;
+    padding: 0px;
+}
+#like-list li:nth-child(2n+1){
+    background-color: rgba(52,26,26,0.18);
+}
+#like-list li{
+    margin: 0px;
+    padding: 5px 15px;
+    display: block;
+    width: 800px;
+    height: 30px;
+}
+#like-list li div{
+    display: inline-block;
+}
+#like-list li a:hover,#like-list li:hover div.ico-zan span{
+    text-decoration-line: none;
+    color: rgba(247,153,115,0.75);
+}
+#like-list li a div,#like-list li div.ico-zan span{
+    font-size: 17px;
+}
+#like-list li a div:first-child{
+    width: 200px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: clip;
+}
+#like-list li a div+div{
+    width: 120px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#like-list li a div+div,#like-list li div.ico-zan{
+    margin-left: 35px;
+}
+#like-list li div.ico-zan{
+    display: inline;
+}

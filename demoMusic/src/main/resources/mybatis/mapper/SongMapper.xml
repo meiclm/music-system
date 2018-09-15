@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.demo.mapper.SongMapper">
+
+    <resultMap id="SingerResult" type="com.music.demo.entities.Singer">
+        <result property="id" column="sid"/>
+        <result property="name" column="singerName"/>
+        <result property="nationality" column="nationality"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <resultMap id="SongResult" type="com.music.demo.entities.Song">
+        <id column="id" property="id"/>
+        <result property="sname" column="sname"/>
+        <result property="sdate" column="sdate"/>
+        <result property="zanCount" column="zanCOunt"/>
+        <result property="filePath" column="filePath"/>
+        <result property="username" column="username"/>
+        <result property="clickCount" column="clickCount"/>
+        <result property="txtUrl" column="txt_url"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="thumbsDown" column="thumbs_down"/>
+        <result property="styleDescribe" column="style_describe"/>
+        <association property="singer" resultMap="SingerResult"/>
+    </resultMap>
+    <select id="findAllSong" resultMap="SongResult">
+        SELECT * FROM song_singer
+    </select>
+
+    <!--查询所有的歌曲，根据用户-->
+    <select id="findSongByUsername" resultMap="SongResult" parameterType="String">
+        SELECT * FROM song_singer WHERE username=#{username}
+    </select>
+
+    <select id="findUsernameWithSongCount" resultType="Integer" parameterType="String">
+        SELECT COUNT(username) AS songCount FROM t_song
+        WHERE username=#{username}
+    </select>
+
+<!--实现模糊查询，通过歌名找歌-->
+    <select id="findSongBySongName" resultMap="SongResult" parameterType="String">
+        SELECT * FROM song_singer
+        WHERE
+            <if test='sname !=null'>
+                sname like "%"#{sname}"%"
+            </if>
+    </select>
+
+    <select id="findByStyle" resultMap="SongResult" parameterType="String">
+        SELECT * FROM t_song WHERE
+            <if test="style!=null">
+                style_describe like "%"#{style}"%"
+            </if>
+    </select>
+    <select id="findBySingerNameOrSongName" resultMap="SongResult" parameterType="String">
+        SELECT * FROM song_singer
+        WHERE
+        <if test='str !=null'>
+            sname LIKE "%"#{str}"%"
+            OR  singerName LIKE "%"#{str}"%"
+            OR style_describe LIKE "%"#{str}"%"
+        </if>
+    </select>
+
+    <select id="findSongBySingerId" resultMap="SongResult" parameterType="Integer">
+        SELECT * FROM song_singer where sid=#{singerId}
+    </select>
+
+    <select id="findSongBySongId" resultMap="SongResult" parameterType="Integer">
+        SELECT * from song_singer WHERE id=#{songId}
+    </select>
+
+    <select id="findByTimeAndNationality" resultMap="SongResult">
+        SELECT * FROM t_song s1,singer s2 WHERE s1.s_id=s2.sid
+            AND DATE_FORMAT(sdate,'%m-%d') >= #{sdate}
+            AND nationality=#{nationality}
+    </select>
+
+   <select id="finByClickCountTop" resultMap="SongResult">
+       select  * from song_singer order by clickCount desc limit 1,10
+   </select>
+    <select id="findByZanTop" resultMap="SongResult">
+        select  * from song_singer order by zanCount desc limit 1,10
+    </select>
+
+    <select id="findAlien" resultMap="SongResult">
+        select  * from t_song s1,singer s2 WHERE s1.s_id=s2.sid
+        AND s2.nationality!='china' order by id desc limit 1,10
+    </select>
+
+    <delete id="deleteSongById" parameterType="Integer">
+        delete from t_song where id=#{songId}
+    </delete>
+
+    <insert id="insertSong" parameterType="com.music.demo.entities.Song">
+        INSERT INTO t_song(sname,s_id,username,filePath,sdate,zanCount,clickCount,txt_url,file_size,style_describe)
+         VALUES (#{sname},#{singer.id},#{username},#{filePath},#{sdate},#{zanCount},#{clickCount},#{txtUrl},#{fileSize},#{styleDescribe})
+    </insert>
+
+    <update id="updateSong" parameterType="com.music.demo.entities.Song">
+        UPDATE t_song SET sname=#{sname},s_id=#{singer.id},filePath=#{filePath},
+            zanCount=#{zanCount},clickCount=#{clickCount},file_size=#{fileSize},style_describe=#{styleDescribe} WHERE id=#{id}
+    </update>
+
+</mapper>

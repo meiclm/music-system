@@ -1,0 +1,97 @@
+.title-a{
+    background-color: rgba(74,117,122,0.16);
+    width: 97.5%;
+    height: 60px;
+    padding: 15px;
+}
+.title-a a{
+    margin: 15px;
+    padding: 10px 15px;
+    text-decoration-line: none;
+    background-color: rgba(97,195,84,0.62);
+    color: white;
+    cursor: pointer;
+}
+.title-a a:first-child{
+    margin-left: 75px;
+}
+.title-a a:hover{
+    background-color: rgba(27,192,37,0.62);
+}
+.title-a span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.head-pic{
+    margin:10px 0px 0px 75px;
+    padding-top: 10px;
+    height: 520px;
+}
+.head-pic div.li{
+    width: 200px;
+    height: 60px;
+    overflow: hidden;
+}
+.head-pic div.li div{
+    display: block;
+    width: 200px;
+    height: 8px;
+    background-color: rgba(227,150,112,0.8);
+    border-radius: 50% 50% 0px 0px;
+}
+.head-pic div.li div.li2{
+    background-color: rgba(226,155,247,0.87);
+}
+.head-pic div.li div.li3{
+    background-color: rgba(97,195,84,0.87);
+}
+.head-pic div.li div.li4{
+    background-color: rgba(251,203,147,0.97);
+}
+.head-pic div.li div.li5{
+    background-color: rgba(151,171,251,0.65);
+}
+ul li{
+    list-style: none;
+}
+.content-li{
+    position: relative;
+}
+.info-li form{
+    position: absolute;
+    top: 3px;
+    left: 30%;
+    border-left: white 5px solid ;
+    /*background-color: ;*/
+    width: 65%;
+    height: 520px;
+}
+.info-li form ul li{
+    margin-top: 10px;
+}
+.info-li form ul li:nth-child(2n+1){
+    font-size: 18px;
+    font-weight: lighter;
+}
+.info-li form ul li:nth-child(2n){
+    margin-left: 75px;
+}
+.info-li form ul li input.input-t{
+    width: 800px;
+    height: 39px;
+}
+.info-li form ul li input.radio-n{
+    width: 15px;
+    height: 15px;
+}
+.info-li form ul li button{
+    font-size: 20px;
+    padding: 10px 95px;
+    color: white;
+    mso-border-shadow: no;
+    background-color: rgba(97,195,84,0.5);
+    margin-left: 290px;
+}
+.info-li form ul li button:hover{
+    background-color: rgba(27,192,37,0.62);
+}

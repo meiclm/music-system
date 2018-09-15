@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>音乐首页</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/topBar.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div th:replace="commons/bar::oneTop"></div>
+<div th:replace="commons/bar::twoTop(activeUri='index.html')"></div>
+<hr>
+<!--第一板块-->
+<div class="myContent">
+    <div class="repeatColor">
+        <p class="titleH2" align="center">新歌上传</p>
+        <div align="center">
+            <!---->
+            <ul class="repeatList">
+                <li  style="cursor: text">为你推荐</li>
+                <li class="second-title second-title-cn second-active" th:attr="data_url=@{/index/nationality?national=china&page=1}">内地</li>
+                <li class="second-title second-title-us" th:attr="data_url=@{/index/nationality?national=us&page=2}">欧美</li>
+                <li class="second-title second-title-han" th:attr="data_url=@{/index/nationality?national=rh&page=3}">日韩</li>
+                <li class="second-title second-title-other" th:attr="data_url=@{/index/nationality?national=others&page=4}">其他</li>
+            </ul>
+        </div>
+    </div>
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators nav-index">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner second-content ten">
+            <div class="item active " align="center">
+                <ul class="second-ul-first">
+
+                    <!--<li th:each="song:${songCN}">-->
+                        <!--<a target="_blank" th:href="@{/display/}+${song.id}">-->
+                            <!--<div class="divContent_out">-->
+                                <!--<div class="contentImg"><img src="" alt="0"></div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="item " align="center">
+                <ul class="second-ul-second">
+                    <!--<li th:each="s:${songCN}">-->
+                        <!--<div class="divContent_out">-->
+                            <!--<div class="contentImg"><img src="http://localhost:8080/upload/index/firstContent/advice05.PNG"></div>-->
+                            <!--<div class="adviceText">-->
+                                <!--<p><a href="#">每日新歌：朴社长高产劳模超酷炫</a></p>-->
+                                <!--<p></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<!--第二板块-->
+<div style="margin: 45px 0px">
+    <div class="repeatColor">
+        <p class="titleH2" align="center">推荐歌曲</p>
+        <div align="center">
+            <ul class="repeatList">
+                <li style="cursor: text">为你推荐</li>
+                <li class="third-title three-title-DJ second-active" th:attr="data_url=@{/index/1?style=DJ}">DJ</li>
+                <li class="third-title three-title-movie" th:attr="data_url=@{/index/2?style=影视}">影视</li>
+                <li class="third-title three-title-musical" th:attr="data_url=@{/index/3?style=经典}">经典</li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div id="" class="carousel slide">
+            <div class="item five" align="center">
+                <ul class="three-content">
+
+                </ul>
+            </div>
+    </div>
+</div>
+
+
+<footer>
+    <table>
+        <tr>
+            <td>腾讯</td><td>百度</td><td>动词音乐</td><td>www.blog.net</td>
+        </tr>
+        <tr>
+            <td>www.blog.net</td>
+            <td>www.blog.net</td>
+            <td>www.blog.net</td>
+            <td>竞聘</td>
+        </tr>
+    </table>
+</footer>
+<script src="js/index.js" th:src="@{js/index.js}"></script>
+</body>
+</html>

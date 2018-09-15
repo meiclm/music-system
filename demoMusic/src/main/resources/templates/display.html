@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>播放页面</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/display.css}">
+    <script src="https://cdn.bootcss.com/jquery/1.7/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="big-content">
+        <div class="backgroundBox">
+            <div class="img"
+                 style="background-image: url(http://localhost:8080/upload/index/firstContent/advice04.PNG)"></div>
+            <div class="border-bar"></div>
+        </div>
+        <div class="word" th:attr="txt_url=${displaySong.txtUrl}" style="width: 800px;height: 500px;overflow-y: scroll;">
+            <pre></pre>
+        </div>
+    </div>
+
+    <div class="audio-bar">
+        <ul>
+            <li>
+                <div th:title="${displaySong.sname}" id="txt" th:text="${displaySong.sname}"></div>
+            </li>
+            <li>
+                <audio autoplay="autoplay" th:src="${displaySong.filePath}" style="width: 700px;border-radius: 0%"
+                       controls></audio>
+            </li>
+            <li>
+                <div class="ico-zan">
+                    <span id="like"
+                          th:attr="like_url=@{/like/}+${displaySong.id},re_like=@{/removeLikeWithUsername/}+${displaySong.id},like_value=${like!=null}?${like.likeId}"
+                          class="glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;
+                    <a class="downloadBtn"
+                       th:attr="download_url=@{/download},download_value=${displaySong.sname},download_suf=${displaySong.filePath}"><span
+                            class="glyphicon glyphicon-download-alt" style="color: black;"></span></a>&nbsp;&nbsp;
+                    <span th:attr="add_uri=@{/zanCount/}+${displaySong.id},remove_uri=@{/zanCount_reduce/}+${displaySong.id}"
+                          class="glyphicon glyphicon-thumbs-up zan-pic"></span>&nbsp;
+                    <span id="zan-count" th:text="${displaySong.zanCount}"></span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-thumbs-down cai-pic" th:attr="add_uri=@{/thumbs_add/}+${displaySong.id},remove_uri=@{/thumbs_reduce/}+${displaySong.id}"></span>
+                    <span id="cai-count" th:text="${displaySong.thumbsDown}"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<script th:src="@{/js/display.js}" charset="utf-8"></script>
+<script th:src="@{/js/commons.js}"></script>
+</body>
+</html>

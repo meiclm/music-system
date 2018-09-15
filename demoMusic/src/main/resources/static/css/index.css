@@ -1,0 +1,89 @@
+
+.titleH2 {
+    font-size: 35px;
+    font-family: Bahnschrift;
+    text-space: 9px;
+}
+.repeatList{
+    margin: 10px auto;
+}
+.repeatList>li{/*内容分类*/
+    width: 79px;
+    display: inline;
+    cursor: pointer;
+    margin: 0px 15px;
+    font-size: 15px;
+}
+.repeatList>li:hover{
+    color: rgba(203,74,43,0.72);
+    text-decoration-line: underline;
+}
+.repeatColor{
+    padding: 35px 35px 5px 35px;
+    background-color: rgba(20,44,37,0.07);
+}
+.item ul{
+    margin-left: 0px;
+}
+.item li:first-child{
+    margin-left: -20px;
+}
+.item ul,.item li{
+    display: inline-block;
+}
+.carousel-indicators{
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    margin-left: -30%;
+}
+.carousel-indicators li{
+    background-color: #444444;
+}
+.carousel-indicators .active{
+    background-color: rgba(168,92,76,0.43);
+}
+.carousel-control.left{
+    background-image: linear-gradient(to left,rgba(0,0,0,.0001) 0,rgba(10,44,37,0.07) 100%);
+}
+.carousel-control.right{
+    background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(110,167,227,0.06) 100%);
+}
+
+carousel-control{
+    color: #2c8dff;
+}
+/*图片放大*/
+.divContent_out .contentImg{
+    width: 226px;
+    height: 224px;
+    overflow: hidden;
+}
+.divContent_out .contentImg img{
+    transition:all 1.2s ease 0.1s;
+}
+.divContent_out .contentImg img:hover{
+    transform: scale(1.2);
+}
+footer{
+    padding: 20px;
+    width: 100%;
+    height: 200px;
+    background-color: #444444
+}
+footer table{
+    margin: 0px auto;
+}
+footer table tr{
+    height: 55px;
+}
+footer table tr td{
+    font-size: 15px;
+    padding: 10px 20px;
+    color: white;
+    width: 180px;
+}
+
+.second-active{
+    color: rgba(203,74,43,0.72);
+}

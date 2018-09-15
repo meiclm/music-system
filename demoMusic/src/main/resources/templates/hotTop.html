@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/hotTop.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/topBar.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="commons/bar::oneTop"></div>
+<div th:replace="commons/bar::twoTop(activeUri='hotTop.html')"></div>
+<div class="contain">
+    <div class="color-bar-null">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
+    <div id="contain-hot">
+        <div class="hot-box" id="first-hot">
+            <h3>热播榜</h3><span>&nbsp;</span>
+            <div th:each="songClick:${clickTop}">
+                <a target="_blank" th:title="${songClick.sname}" th:href="@{/display/}+${songClick.id}">[[${songClick.sname}]]</a>
+            </div>
+
+        </div>
+        <div class="hot-box" id="zan-hot">
+            <h3>点赞榜</h3><span>&nbsp;</span>
+            <div th:each="song:${zanTop}">
+                <a target="_blank" th:title="${song.sname}" th:href="@{/display/}+${song.id}">[[${song.sname}]]</a>
+            </div>
+        </div>
+        <div class="hot-box" id="prevail-hot">
+            <h3>外国榜</h3><span>&nbsp;</span>
+            <div th:each="aliensong:${alienSong}">
+                <a target="_blank" th:title="${aliensong.sname}" th:href="@{/display/}+${aliensong.id}">[[${aliensong.sname}]]</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

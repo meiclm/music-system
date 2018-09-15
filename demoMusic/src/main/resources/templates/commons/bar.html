@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-default" th:fragment="oneTop" role="navigation" style="background-color: white">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="http://localhost:8080/upload/image/ifavor.jpg"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><input name="searchBox" class="searchBox search"><div class="search-icon"></div></li>
+<!--判断是否有用户登陆成功-->
+            <li id="li-a-li"><a class="li-a" th:href="@{/userLogin}" th:text="${session.loginUser==null}?'登陆':${session.loginUser}"></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-fire"></span>关于我们</a></li>
+        </ul>
+    </div>
+
+    <form id="searchForm" method="post" th:action="@{/search}">
+        <input class="search-value" name="str" type="hidden">
+        <input class="searchBtn search" type="hidden" value="post" name="_method">
+    </form>
+    <script>
+        $("input.searchBox").bind('keydown',function (event) {
+            if (event.keyCode==13){
+                $(".search-value").val($("input.searchBox").val());
+                $("#searchForm").submit();
+            }
+        });
+        console.log("判断是否登陆，用户信息长度"+$(".li-a").html().length);
+        if ($(".li-a").html().length>5){
+            $(".li-a").attr("href","http://localhost:8080/user/songByu");
+            $("#li-a-li").css("cursor","text");
+        }
+    </script>
+</nav>
+<div class="navbar-collapse collapse nav-second" th:fragment="twoTop" style="text-align: center;">
+    <ul class="nav navbar-nav" style="display: inline-block;float: none;">
+        <li class="navOne li-active" th:class="${activeUri=='index.html'?'navOne li-active':'navOne'}">
+            <a th:href="@{/index}" class="a-active" th:class="${activeUri=='index.html'?'a-active':''}">首页</a>
+        </li>
+        <li class="navOne" th:class="${activeUri=='hotTop.html'?'navOne li-active':'navOne'}">
+            <a th:href="@{/hotTop}" th:class="${activeUri=='hotTop.html'?'a-active':''}">排行榜</a>
+        </li>
+        <li class="navOne" th:class="${activeUri=='singer.html'?'navOne li-active':'navOne'}">
+            <a th:href="@{/singer}" th:class="${activeUri=='singer.html'?'a-active':''}">歌手</a>
+        </li>
+        <li class="navOne" th:if="${session.loginUser!=null}" th:class="${activeUri=='mySongList.html'?'navOne li-active':'navOne'}">
+            <a class="my-songList" th:text="${session.loginUser!=null}?'我的歌曲'" th:href="@{/user/songByu}" th:class="${activeUri=='mySongList.html'?'a-active':''}"></a>
+        </li>
+        <li class="navOne">
+            <a th:href="@{/allSong}">全部歌曲</a>
+        </li>
+    </ul>
+</div>
+
+<div class="left-user" th:fragment="myInformationList">
+    <div class="my-info" >
+        <div class="my-info-border">
+            <div class="head-img">
+                <img width="224" height="225" th:src="${session.currentUser.getPicUrl()}">
+                <div class="img-info"><p>[[${session.loginUser}]]的个人信息</p></div>
+            </div>
+            <div class="xiangxi-info">
+                <ul>
+                    <li>性别：&nbsp;<span th:text="${session.currentUser.gender==0}?'女':'男'"></span></li>
+                    <li>我的邮箱：&nbsp;[[${session.currentUser.email}]]</li>
+                    <li>等级：&nbsp;[[${session.currentUser.rate}]]级</li>
+                    <li><label th:text="${session.currentUser.rate<8}?'只有等级到了8级才能下载歌曲哦！':''" style="font-size: 12px"></label></li>
+                </ul>
+                <a th:href="@{/user/}+${session.currentUser.username}" target="_blank" th:class="${activeUri=='mySongList.html'}?'btn':'btn fadeOutBtn'" id="my-info-update">修改信息</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    if ($(".li-a").val()!=='登陆'){
+        $(".li-a").attr("href","#").click(function () {
+            return false;
+        });//点击，不跳转
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.demo.mapper.SingerMapper">
+
+    <resultMap id="SingerResult" type="com.music.demo.entities.Singer">
+        <result property="id" column="sid"/>
+        <result property="name" column="singerName"/>
+        <result property="nationality" column="nationality"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <select id="getAllSinger" resultMap="SingerResult">
+        SELECT * FROM singer
+    </select>
+    <select id="findBySingerId" resultMap="SingerResult" parameterType="Integer">
+        select * from singer where sid=#{sid}
+    </select>
+    <select id="findBySingerName" resultMap="SingerResult" parameterType="String">
+        select * from singer where singerName=#{singerName}
+    </select>
+
+    <select id="findByNationality" resultMap="SingerResult" parameterType="String">
+        SELECT * from singer s1,t_song s2 WHERE s1.nationality=#{nationality} AND s1.sid=s2.s_id;
+    </select>
+
+    <select id="findByNationAndSex" resultMap="SingerResult">
+        select * from singer where nationality=#{nationality} AND sex=#{sex}
+    </select>
+    <insert id="insertSinger" parameterType="String">
+        insert into singer(singerName) values(#{name})
+    </insert>
+</mapper>

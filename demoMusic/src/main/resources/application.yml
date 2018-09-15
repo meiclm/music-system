@@ -1,0 +1,40 @@
+# SpringBoot 服务器配置
+server:
+  port: 8080
+
+spring:
+  # 数据源基本配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/demoMusic?characterEncoding=utf8&useSSL=true
+    username: root
+    password: 123456
+  # thymeleaf 模板引擎配置
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+# mybatis 配置,驼峰命名法
+mybatis:
+  type-aliases-package: tk.mybatis.springboot.model
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 日志配置
+logging:
+  level:
+    com.music.demo.mapper: debug
+mapper:
+  mappers:
+        - tk.mybatis.springboot.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+

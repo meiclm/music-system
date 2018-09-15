@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="contain">
+    <div class="poster" align="center">
+        <div class="poster-img">
+            <div class="img" style="background-image: url('/static/img/poster.jpg')">
+                <img width="450" height="300" src="http://localhost:8080/upload/image/poster.jpg">
+            </div>
+            <div class="info" align="center">
+                <p>九月音乐节</p>
+                <p>狂欢等你来！</p>
+                <p>>>>>>>>>............................>>>>>></p>
+            </div>
+
+        </div>
+        <div class="spinner">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+            <div class="line4"></div>
+            <div class="line5"></div>
+        </div>
+    </div>
+    <div class="background">
+        <div class="title-list">
+            <a class="loginBtn current"><span>登陆</span></a>
+            <a class="registerBtn"><span>注册</span></a>
+        </div>
+        <hr>
+
+        <div class="form-box">
+            <div class="loginForm">
+                <!--提示信息-->
+                <p style="color: red;margin-left: 30px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                <form action="" th:action="@{/userLogin}" method="post">
+                    <table>
+                        <tr>
+                            <td>用户名</td>
+                            <td><input type="text" th:value="${success}" name="username1" placeholder="" id="l-username"
+                                       class="inputText"></td>
+                        </tr>
+                        <tr>
+                            <td>密码</td>
+                            <td><input type="password" required autocomplete='password1' name="password1"
+                                       class="inputText"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button type="submit">登陆</button>&nbsp;&nbsp;
+                                <button type="reset">重置</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left"><a disabled="true" style="color: rgba(203,74,43,0.72)">还没有账号，请先注册</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="registerForm hide">
+                <!--提示信息-->
+                <p class="register-txt" style="color: red;margin-left: 30px" th:text="${m}"
+                   th:if="${not #strings.isEmpty(m)}"></p>
+                <form id="register-action" method="post" enctype="multipart/form-data">
+                    <table>
+                        <tr>
+                            <td>用户名</td>
+                            <td>
+                                <input type="text" placeholder="请输入字母、数字组合,长度为6~11" required autocomplete='username'
+                                       id="r-username" name="username" class="inputText">
+                                <span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>密码</td>
+                            <td>
+                                <input type="password" id="r-password" placeholder="请输入字母、数字组合" required
+                                       autocomplete='password' name="password" class="inputText">
+                                <span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>邮箱</td>
+                            <td>
+                                <input type="email" id="r-email" required autocomplete='email'
+                                       placeholder="xxxxxx@qq.com" name="email" class="inputText">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>性别</td>
+                            <td><input type="radio" name="gender" value="1">男&nbsp;&nbsp;<input type="radio"
+                                                                                                name="gender" value="0">女
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>头像</td>
+                            <td><input type="file" name="picFile" id="pic-file"><span>请上传png、jpg格式的文件</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button type="submit" th:attr="register_uri=@{/userRegister}" id="register-button"
+                                        class="registerOK">注册
+                                </button>&nbsp;&nbsp;
+                                <button type="reset">重置</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <input name="rate" hidden="" type="number" value="0">
+                    <input name="picUrl" hidden="hidden">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>

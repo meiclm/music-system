@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/myInfoUpdate.css}">
+</head>
+<body>
+
+<div>
+    <div class="title-a">
+        <a th:href="@{/index}">&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a th:href="@{/user/songByu}">我的歌曲</a>
+        <span>我的信息修改</span>
+    </div>
+    <div class="content-li" style="background-color: rgba(120,120,120,0.62)">
+        <div class="head-pic">
+            <img style="border-radius: 50%;width: 224px;height: 225px;" th:src="${session.currentUser.getPicUrl()}">
+            <div class="li">
+                <div class="li1"></div>
+                <div class="li2"></div>
+                <div class="li3"></div>
+                <div class="li4"></div>
+                <div class="li5"></div>
+            </div>
+
+        </div>
+        <div class="info-li">
+            <form th:action="@{/user/update}" enctype="multipart/form-data" method="post">
+                <ul>
+                    <li>更换头像:</li>
+                    <li><input type="file" name="file"></li>
+                    <li>用户名：</li>
+                    <li><input disabled name="username" class="input-t" th:value="${nowUser.username}"></li>
+                    <li>密码：</li>
+                    <li><input  name="password" type="password" class="input-t" th:value="${nowUser.password}"></li>
+                    <li>email</li>
+                    <li><input type="email" name="email" class="input-t" th:value="${nowUser.email}"></li>
+                    <li>gender</li>
+                    <li><input type="radio" class="radio-n" name="gender" value="1" th:checked="${nowUser.gender==1}">男&nbsp;&nbsp;&nbsp;<input type="radio" class="radio-n" value="0" name="gender" th:checked="${nowUser.gender==0}">女</li>
+                    <li><button type="submit">提交</button></li>
+                </ul>
+                <input hidden name="rate" th:value="${nowUser.rate}">
+                <input hidden name="picUrl" th:value="${nowUser.picUrl}">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

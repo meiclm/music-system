@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/singers.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/topBar.css">
+    <link href="css/hotTop.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="commons/bar::oneTop"></div>
+<div th:replace="commons/bar::twoTop(activeUri='singer.html')"></div>
+<hr>
+<div id="content">
+    <div id="left_box">
+        <h4>全部歌手</h4>
+        <ul>
+            <li>华语</li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=china&sex=0}">华语男歌手</a></li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=china&sex=1}">华语女歌手</a></li>
+        </ul>
+        <ul>
+            <li>欧美</li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=US&sex=0}">欧美男歌手</a></li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=US&sex=1}">欧美女歌手</a></li>
+        </ul>
+        <ul>
+            <li>日韩</li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=rh&sex=0}">日韩男歌手</a></li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=rh&sex=1}">日韩女歌手</a></li>
+
+        </ul>
+        <ul>
+            <li>其他歌手</li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=others&sex=0}">其他男歌手</a></li>
+            <li class="classify"><a th:attr="data_url=@{/singer/national?national=others&sex=1}">其他女歌手</a></li>
+        </ul>
+    </div>
+    <div id="right_box">
+        <div id="nationality-result">
+            <ul></ul>
+        </div>
+        <div class="static-singer">
+            <div id="headQue">
+                <h3>全部歌手</h3>
+                <hr style="height: 3px;background-color: rgba(65,30,11,0.21);margin: 0px;width: 100%">
+            </div>
+            <div id="hotSingers">
+                <sapn>推荐歌手</sapn>
+                <table id="tuiJian">
+                </table>
+            </div>
+            <div class="singerList">
+                <ul>
+                    <li th:each="singer:${singersList}">
+                        <a id="singer_song" target="_blank"
+                           th:href="@{/singer/}+${singer.id}">[[${singer.name}]]</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="js/singer.js"></script>
+<script>
+    if ($(".singer-search-result>p").html()!=null){
+        $(".static-singer").css("display","none");
+    }
+
+</script>
+</body>
+</html>

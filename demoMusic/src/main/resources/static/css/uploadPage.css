@@ -1,0 +1,50 @@
+.song-content{
+    position: relative;
+}
+.song-content .right-add,.song-content .left-user{
+    position: absolute;
+    top: 0px;
+    /*border: rgba(64,207,237,0.88) 1px solid;*/
+}
+.song-content .left-user{
+    left: 5%;
+    width: 25%;
+}
+.song-content .right-add{
+    left: 32%;
+    height: fit-content;
+    padding: 15px;
+}
+
+
+/*添加歌曲*/
+.right-add{
+padding-top: 15px;
+}
+.right-add form ul li{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.right-add form ul li:nth-child(2n){
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
+.right-add form ul li label{
+    font-size: 15px;
+    font-weight: normal;
+}
+.right-add form ul li>button{
+    width: 300px;
+    height: 35px;
+    margin-left: 50px;
+    background-color: rgba(40,121,10,0.97);
+    color: white;
+}
+.right-add form ul li>button:hover{
+    background-color: rgba(27,163,35,0.97);
+}
+.right-add form ul li:nth-child(2n) input.text{
+    width: 365px;
+    height: 45px;
+}

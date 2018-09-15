@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>我的歌单</title>
+    <link rel="stylesheet" th:href="@{/css/mySongList.css}">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/topBar.css}">
+    <link rel="stylesheet" th:href="@{/css/uploadPage.css}">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        span.like-current {
+            color: rgba(247, 79, 43, 0.78);
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="commons/bar::oneTop"></div>
+<div th:replace="commons/bar::twoTop(activeUri='mySongList.html')"></div>
+<div class="content">
+    <div class="color-bar" style="background-color: rgba(20,44,37,0.07);width: 100%;height: 80px;">
+        <div class="operation">
+            <a id="upload" th:href="@{/user/upPage}">
+                <button>上传歌曲</button>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="my-like-btn">我喜欢/我的</button>
+        </div>
+    </div>
+    <div class="song-content">
+        <div th:replace="commons/bar::myInformationList(activeUri='mySongList.html')"></div>
+
+        <div class="right-add">
+            <div class="mySong-list">
+                <table class="table table-striped update-table">
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <td>歌名</td>
+                        <td>演唱者</td>
+                        <td>上传时间</td>
+                        <td>点赞数</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="song:${myList}">
+                        <!--<input type="checkbox" name="checkbox" class="check-box" th:value="${song.id}">-->
+                        <td></td>
+                        <td>
+                            <div th:title="${song.sname}">[[${song.sname}]]</div>
+                        </td>
+                        <td>
+                            <div>[[${song.singer.name}]]</div>
+                        </td>
+                        <td>
+                            <div>[[${song.sdate}]]</div>
+                        </td>
+                        <td>
+                            <div style="padding-left: 20px">[[${song.zanCount}]]</div>
+                        </td>
+                        <td>
+                            <div>
+                                <a target="_blank" th:href="@{/display/}+${song.id}"><span
+                                        class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
+                                <a th:href="@{/song/upPage/}+${song.id}"><span
+                                        class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                                <a th:href="@{/song/}+${song.id}" id="deleteBtn"
+                                   class="glyphicon glyphicon-trash deleteBtn" style="color: red;"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="like-song-list" style="display: none">
+                <div id="like-box">
+                    <br>
+                    <span style="font-size: 20px;font-weight: bold">喜欢列表</span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-heart-empty "></span>
+
+                    <ul id="like-list">
+                        <li th:each="like:${likeList}">
+                            <a target="_blank" th:href="@{/display/}+${like.songId}">
+                                <div style="overflow: hidden;text-overflow: clip;" th:title="${like.songName}" th:text="${like.songName}"></div>&nbsp;&nbsp;
+                                <div th:title="${like.singerName}" th:text="${like.singerName}"></div>
+                            </a>
+                            <div class="ico-zan">
+                                 <span id="like"
+                                       th:attr="like_url=@{/like/}+${like.songId},re_like=@{/removeLikeWithUsername/}+${like.songId}"
+                                       class="like-current glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script th:src="@{/js/mySongList.js}"></script>
+<script th:src="@{/js/commons.js}"></script>
+</body>
+</html>

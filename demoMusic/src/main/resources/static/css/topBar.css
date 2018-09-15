@@ -1,0 +1,146 @@
+.navbar-default{
+    background-color: white;
+    padding: 15px 20px 5px 20px;
+}
+.navbar{
+    margin-bottom: 5px;
+    border: white 1px solid;
+    min-height: 60px;
+}
+.navbar-brand{
+    padding: 5px 15px;
+}
+.navbar-brand>img{
+    height: 45px;
+    width: 250px;
+}
+.navbar-nav>li>a{
+    font-size: 20px;
+}
+.navbar-nav>li>.search{
+    margin: 13px 10px;
+    outline:medium;
+    height: 35px;
+    border-radius: 10px;
+}
+.navbar-nav>li>.searchBox{
+    width: 300px;
+    border: rgba(21,10,6,0.18) 1px solid;
+    padding-left: 9px;
+}
+
+.search-icon {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    border: 3px solid silver;
+    left: 85%;
+    top: 20px;
+    border-radius: 100%;
+}
+.search-icon:after {
+    content: "";
+    position: absolute;
+    background: silver;
+    height: 6px;
+    width: 3px;
+    bottom: -5px;
+    right: -3px;
+    transform: rotate(-45deg);
+}
+
+
+.nav-second>li{
+    display: inline-block;
+}
+.nav-second>li+li{
+    margin-left: 2px;
+}
+.nav>.navOne:hover{
+    box-shadow: 0px 2.9px 0px rgba(203,74,43,0.72) ;
+}
+.nav>.navOne>a{
+    color: #444444;
+}
+.nav>.navOne>a:hover{
+    background-color: white;
+    color: rgba(203,74,43,0.72);
+}
+/*标题栏被选中*/
+.nav-second ul li a.a-active{
+    background-color: white;
+    color: rgba(203,74,43,0.72);
+}
+.li-active{
+    box-shadow: 0px 2.9px 0px rgba(203,74,43,0.72) ;
+}
+.number{
+    background-color: white;
+    color: rgba(203,74,43,0.72);
+}
+hr{
+    width: 82%;
+    height: 10px;
+    margin: 0px auto;
+}
+/*轮播的样式*/
+#myModalLabel li{
+    margin: 0px 1px;
+    padding: 2px 25px;
+}
+#myModalLabel li.current{
+    background-color: silver;
+}
+h4.current{
+    color: white;
+}
+
+.silver-background{
+    background-color: silver;
+    height: 420px;
+}
+
+
+/*头像的位置*/
+.my-info div:first-child img{
+    margin-left: 2px;
+    border-radius: 50%;
+    width: 226px;
+    height: 225px;
+}
+
+
+.my-info{
+    position: relative;
+}
+.my-info-border{
+    position: absolute;
+    top:2px;
+    left: 10%;
+    padding: 0px 3px;
+    border-right: silver 3px solid;
+}
+.left-user .my-info .head-img .img-info p{
+    color: #444444;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.left-user .my-info div ul{
+    margin: 0px;
+    padding: 0px;
+}
+.left-user .my-info div ul li{
+    display: block;
+    color: #444444;
+    font-size: 16px;
+    margin: 2px 0px;
+}
+.my-info div ul li:nth-child(2n+1){
+    background-color: rgba(42,42,4,0.22);
+}
+/*隐藏修改个人信息的按钮*/
+.fadeOutBtn{
+    display: none;
+}

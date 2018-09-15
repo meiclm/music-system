@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>上传/下载页面</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/topBar.css}">
+    <link rel="stylesheet" th:href="@{/css/uploadPage.css}">
+</head>
+<body>
+<div th:replace="commons/bar::oneTop"></div>
+<div th:replace="commons/bar::twoTop(activeUri='mySongList.html')"></div>
+<div class="content">
+    <div class="color-div" style="background-color: rgba(20,44,37,0.07);width: 100%;height: 50px;"></div>
+    <div class="song-content">
+       <div th:replace="commons/bar::myInformationList(activeUri='uploadPage.html')"></div>
+        <div class="right-add">
+            <form class="formTxt form" method="post"  th:action="@{/song/upload}" enctype="multipart/form-data">
+                <!--发送put请求修改歌曲数据-->
+                <!--一个隐藏域，用以表示真正的请求方法，这个隐藏域的名称默认是“_method”-->
+                <!--HiddenHttpMethodFilter，
+                通过这个Filter我们可以把以POST方式传递过来的表示实际请求方式的参数转换为对应的真正的Http请求方法-->
+                <input type="hidden" name="_method" th:if="${songById!=null}" value="put">
+                <input type="hidden" name="id" th:if="${songById!=null}" th:value="${songById.id}">
+                <!--提示信息-->
+                <p class="m-txt" style="color: red;margin-left: 30px" th:text="${songError}" th:if="${not #strings.isEmpty(songError)}"></p>
+                <ul>
+                    <li>歌名：</li>
+                    <li><input type="text" th:value="${songById!=null}?${songById.sname}"  name="sname" class="text"></li>
+                    <li>演唱者：</li>
+                    <li><input type="text" name="singer.name" th:value="${songById!=null}?${songById.singer.getName()}" class="text"></li>
+                    <li>风格：</li>
+                    <li><input type="text" name="styleDescribe" th:value="${songById!=null}?${songById.styleDescribe}" class="text" placeholder="DJ,影视，经典"></li>
+                    <li>音乐文件（music）：<label>（请选择mp3类型的音频文件）</label></li>
+                    <li><input type="file" name="file"></li>
+                    <li>歌词文件：</li>
+                    <li><input type="file" name="txtFile"></li>
+                    <li><button type="submit" th:text="${songById!=null}?'修改':'添加'">添加</button></li>
+                </ul>
+                <input hidden name="id" th:value="${songById!=null}?${songById.id}">
+                <input hidden name="username" th:value="${songById!=null}?${songById.username}:${session.loginUser}">
+                <input hidden type="number" th:value="${songById!=null}?${songById.zanCount}" name="zanCount" >
+                <input hidden type="text" th:value="${songById!=null}?${songById.filePath}" name="filePath">
+                <input hidden type="text" th:value="${songById!=null}?${songById.sdate}" name="sdate">
+            </form>
+        </div>
+    </div>
+
+</div>
+<!--<footer style="position: absolute;top: 700px; width: 100%;height: 20px; background-color: black" ></footer>-->
+<script>
+    $(".allBtn").click(function () {
+        $("form").submit();
+    });
+</script>
+</body>
+</html>
